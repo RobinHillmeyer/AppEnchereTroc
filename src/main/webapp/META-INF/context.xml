@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource
+	
+	name="jdbc/pool_cnx"
+	
+	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	type="javax.sql.DataSource"
+	
+	url="jdbc:sqlserver://UFO-GAMING:1433;databaseName=BDD_TROC_ENCHERE"
+	username="utilisateurBDD"
+	password="Pa$$w0rd"
+	
+	maxTotal="100"
+	maxIdle="30"
+	maxWaitMillis="10000"
+	
+	/>
+</Context>
