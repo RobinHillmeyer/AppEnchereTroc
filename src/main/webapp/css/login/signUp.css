@@ -1,0 +1,29 @@
+.containerFormSignUp{
+	margin-top:8%;
+	display: flex;
+	flex-direction: column;
+	align-content:center;
+	justify-content:center;
+	align-items:center;
+	width:100%
+}
+
+.formSignUp{
+	width: 30%
+}
+
+.sbContBtn{
+	justify-content: space-between;	
+}
+.btnCNC{
+	width: 30%;
+	padding:2%;
+	text-align: center;
+	margin-top: 2%;
+	border-radius: 8px;
+}
+
+
+
+
+

@@ -1,0 +1,78 @@
+.mainUp{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content:center;
+	padding:2%;
+}
+
+.divContForm{
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+}
+.subDivContForm{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-content:center;
+	justify-content: space-between;
+	width: 600px;
+	margin:1%
+}
+.btnFormSignIn{
+	display:flex;
+	justify-content: space-between;
+}
+.inptForm{
+	width: 400px;
+}
+.btnConf{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-content:center;
+	margin: 1%	
+}
+#confMdp, .creditTxt{
+	margin-left: 85px
+}
+.divCOntModal{
+	display:flex;
+	flex-direction:column;
+	align-content:center;
+	
+}
+.modal{ 
+      display: none;  
+      height:18%; 
+      width:26%; 
+      top:37.5%; 
+      left:37.5%; 
+      z-index: 1; 
+      background-color: white ; 
+      position: fixed; 
+      border: 1px solid #0C6EA1;
+      border-radius: 8px;
+      padding: 1%
+      
+}
+
+.txtModal{
+	text-align: center;
+	font-size: 18px
+	
+} 
+.btnModalCont{
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width:100%
+	
+}
+.avatar{
+	border-radius: 100%;
+	border: 2px solid #0C6EA1;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+	
+}
