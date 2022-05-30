@@ -86,6 +86,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		// r�cup�ration de l'id Utilisateur par la session .
 		HttpSession session = request.getSession();
 		int idUser =(int)request.getSession().getAttribute("userIdSessionAttr");
+		//TODO potentielement dans le DOGET
 		System.out.println(idUser+" idUser depuis nouvelle vente");
 
 		try {
