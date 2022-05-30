@@ -46,7 +46,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		// Afficher l'adresse utilisateur en tant qu'adresse par défaut de retrait 
 		UtilisateurManager um = new UtilisateurManager();
 		
-		try {
+		try {		//TODO Recuperer l'idUser
 			String rue = um.selectUtilisateurById(2).getRue();
 			String codePostal = um.selectUtilisateurById(2).getCodePostal();
 			String ville = um.selectUtilisateurById(2).getVille();

@@ -45,8 +45,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setDate(3, Date.valueOf(article.getDateDebutEncheres()));
 			pstmt.setDate(4, Date.valueOf(article.getDateFinEncheres()));
 			pstmt.setInt(5, article.getMiseAPrix());
-			pstmt.setInt(6, idUser); // TODO Recuperer ID utilisateur 
-
+			pstmt.setInt(6, idUser);
 			pstmt.setInt(7, article.getNoCategorie());
 
 			pstmt.executeUpdate();

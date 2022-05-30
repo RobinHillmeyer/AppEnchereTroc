@@ -27,11 +27,11 @@
 		<c:if test="${!empty userIdSessionAttr}">
 		<a href="${pageContext.request.contextPath}/ProfilUtilisateur"
 				class="linkSignIn">Encheres</a>
-				<a href="${pageContext.request.contextPath}/ProfilUtilisateur"
+		<a href="${pageContext.request.contextPath}/NouvelleVente"
 				class="linkSignIn">Vendre un article</a>
 		<a href="${pageContext.request.contextPath}/ProfilUtilisateur"
 				class="linkSignIn">Profile</a>
-			<a href="${pageContext.request.contextPath}/signOut"
+		<a href="${pageContext.request.contextPath}/signOut"
 				class="linkSignIn">Déconnexion</a>
 			
 		</c:if>
