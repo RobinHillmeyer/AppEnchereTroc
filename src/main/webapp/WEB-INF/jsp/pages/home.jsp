@@ -132,20 +132,22 @@
 		
 		<c:if test="${!empty listeArticle}">
 			<c:forEach var="la" items="${listeArticle}">
-				<div class="articlesContainer">
-					<div class="artContainer">
-						<img class="imgArt" alt="image d'un article"
-							src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-						<div class="descArtContainer">
-							<img class="pp" alt="photo de l'utilisateur"
-								src="${pageContext.request.contextPath}/assets/pp.jpg">
-							<p class="artName">${la.nomArticle}</p>
-							<p>Prix: ${la.miseAPrix}</p>
-							<p>fin de l'enchère : ${la.dateFinEncheres}</p>
-							<p>vendeur : e.macron</p>
+				<a href="${pageContext.request.contextPath}/DetailVente">
+					<div class="articlesContainer">
+						<div class="artContainer">
+							<img class="imgArt" alt="image d'un article"
+								src="${pageContext.request.contextPath}/assets/chaise1.jpg">
+							<div class="descArtContainer">
+								<img class="pp" alt="photo de l'utilisateur"
+									src="${pageContext.request.contextPath}/assets/pp.jpg">
+								<p class="artName">${la.nomArticle}</p>
+								<p>Prix: ${la.miseAPrix}</p>
+								<p>fin de l'enchère : ${la.dateFinEncheres}</p>
+								<p>vendeur : e.macron</p>
+							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 			</c:forEach>
 		</c:if>
 	

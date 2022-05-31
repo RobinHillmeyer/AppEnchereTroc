@@ -3,23 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouvelle vente </title>
-</head>
+
+<jsp:include page="../fragments/head.jsp" />
+<c:if test="${!empty listeCodesErreur}">
+	<div class="alert alert-danger" role="alert">
+		<strong>Erreur</strong>
+		<ul>
+			<c:forEach var="code" items="${listeCodesErreur}">
+				<li>${LecteurMessage.getMessageErreur(code)}</li>
+			</c:forEach>
+		</ul>
+	</div>
+</c:if>
+
 <body>
+	
+	<%@ include file="../fragments/header.jsp"%>
+	
     <h1>Détail vente</h1>
-    <c:out value=""></c:out>
-    <p>Description : </p>
-    <p>Catégorie </p>
+    <h2>${nomArticle}</h2>
+    <p>Description : ${article.description}</p>
+    <p>Catégorie : ${article.categorieArticle}</p>
     <p>Meilleure offre : </p>
-    <p>Mise a prix : </p>
-    <p>Fin de l'enchère : </p>
-    <p>Retrait : </p>
-    <p>Vendeur : </p>
-    <form action="" method="post">
+    <p>Mise a prix : ${article.miseAPrix}</p>
+    <p>Fin de l'enchère : ${article.dateFinEncheres}</p>
+    <p>Retrait : ${article.lieuRetrait}</p>
+    <p>Vendeur : ${utilisateur.pseudo}</p>
+    
+    <form action="${pageContext.request.contextPath}/DetailVente" method="post">
         <p>
             <label for="proposition">Ma proposition : </label>
             <input type="number" name="proposition" id="proposition" min="0">
