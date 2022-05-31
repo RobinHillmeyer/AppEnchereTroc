@@ -45,11 +45,13 @@ public class ServletNouvelleVente extends HttpServlet {
 
 		// Afficher l'adresse utilisateur en tant qu'adresse par défaut de retrait 
 		UtilisateurManager um = new UtilisateurManager();
+		int idUser =(int)request.getSession().getAttribute("userIdSessionAttr");
+		
 		
 		try {		//TODO Recuperer l'idUser
-			String rue = um.selectUtilisateurById(2).getRue();
-			String codePostal = um.selectUtilisateurById(2).getCodePostal();
-			String ville = um.selectUtilisateurById(2).getVille();
+			String rue = um.selectUtilisateurById(idUser).getRue();
+			String codePostal = um.selectUtilisateurById(idUser).getCodePostal();
+			String ville = um.selectUtilisateurById(idUser).getVille();
 
 			request.setAttribute("rue", rue);
 			request.setAttribute("codePostal", codePostal);
@@ -125,7 +127,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/nouvelle_vente/detailVente.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
 		rd.forward(request, response);
 	}
 

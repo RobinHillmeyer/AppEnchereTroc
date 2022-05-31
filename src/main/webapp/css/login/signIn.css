@@ -1,78 +1,131 @@
-.mainUp{
+@import
+	url('https://fonts.googleapis.com/css2?family=Maven+Pro&family=Ubuntu:wght@300&display=swap')
+	;
+
+h1 {
+	font-family: 'Maven Pro', sans-serif;
+	margin-bottom: 2rem;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid rgb(12, 110, 161, 0.3);
+	width: 100%;
+	margin: 10px 0px 40px 0px;
+}
+
+.mainUp {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	align-content:center;
-	padding:2%;
+	align-content: center;
+	padding: 2%;
 }
 
-.divContForm{
+.divContForm {
 	display: flex;
 	width: 100%;
 	justify-content: space-around;
 }
-.subDivContForm{
+
+.subDivContForm {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	align-content:center;
+	align-content: center;
 	justify-content: space-between;
 	width: 600px;
-	margin:1%
+	margin: 1%
 }
-.btnFormSignIn{
-	display:flex;
-	justify-content: space-between;
-}
-.inptForm{
-	width: 400px;
-}
-.btnConf{
+
+.divSellContForm {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	align-content:center;
-	margin: 1%	
-}
-#confMdp, .creditTxt{
-	margin-left: 85px
-}
-.divCOntModal{
-	display:flex;
-	flex-direction:column;
-	align-content:center;
-	
-}
-.modal{ 
-      display: none;  
-      height:18%; 
-      width:26%; 
-      top:37.5%; 
-      left:37.5%; 
-      z-index: 1; 
-      background-color: white ; 
-      position: fixed; 
-      border: 1px solid #0C6EA1;
-      border-radius: 8px;
-      padding: 1%
-      
+	align-content: center;
+	justify-content: space-between;
+	width: 600px;
+	margin: 1%;
+	margin-bottom: 3%;
 }
 
-.txtModal{
+.btnFormSignIn {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btnFormSell {
+	display: flex;
+	justify-content: space-between;
+	margin: 2rem;
+}
+
+.inptForm {
+	width: 400px;
+}
+
+.btnConf {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-content: center;
+	margin: 1%
+}
+
+#confMdp, .creditTxt {
+	margin-left: 85px
+}
+
+.divCOntModal {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+.modal {
+	display: none;
+	height: 18%;
+	width: 26%;
+	top: 37.5%;
+	left: 37.5%;
+	z-index: 1;
+	background-color: white;
+	position: fixed;
+	border: 1px solid #0C6EA1;
+	border-radius: 8px;
+	padding: 1%
+}
+
+.txtModal {
 	text-align: center;
 	font-size: 18px
-	
-} 
-.btnModalCont{
-	display:flex;
+}
+
+.btnModalCont {
+	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	width:100%
-	
+	width: 100%
 }
-.avatar{
+
+.avatar {
 	border-radius: 100%;
 	border: 2px solid #0C6EA1;
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-	
+}
+
+textarea {
+	resize: none;
+}
+
+fieldset {
+	width: 650px;
+	border: 1.5px solid #CED4DA;
+	border-radius: 20px;
+	padding-left: 1rem;
+}
+
+.retrait {
+	width: 100px;
+	text-align: center;
 }

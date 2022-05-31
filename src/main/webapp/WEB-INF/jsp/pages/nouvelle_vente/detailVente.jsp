@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,6 +11,7 @@
 </head>
 <body>
     <h1>Détail vente</h1>
+    <c:out value=""></c:out>
     <p>Description : </p>
     <p>Catégorie </p>
     <p>Meilleure offre : </p>

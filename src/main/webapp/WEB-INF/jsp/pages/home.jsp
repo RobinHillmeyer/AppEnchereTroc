@@ -52,16 +52,11 @@
 			</button>
 		</div>
 
-		<c:if test="${!empty listeCategorie}">
-			<c:forEach var="lc" items="${listeCategorie}">
-				<option value="${lc.noCategorie}">${lc.libelle}</option>
-			</c:forEach>
-		</c:if>
 		<div class="inptSlct input-group mt-4">
 			<label id="selectCat" class="form-label" for="selectCat">Catégorie
 				:</label> <select class="form-control col-md-2 " name="selectCat"
 				aria-label=".form-select-lg example">
-				<option selected>choisir une catégorie</option>
+				<option selected>-- Choisissez une catégorie --</option>
 				<c:if test="${!empty listeCategorie}">
 					<c:forEach var="lc" items="${listeCategorie}">
 						<option value="${lc.noCategorie}">${lc.libelle}</option>
@@ -76,7 +71,7 @@
 		
 			<div class="form-check">
 			
-				<input class="form-check-input" type="radio" name="achat"
+				<input class="form-check-input" type="radio" name="achatVente"
 					id="flexRadioDefault1"> <label class="form-check-label"
 					for="achat">Achats</label>
 			</div>
@@ -105,7 +100,7 @@
 
 		<div class="chexkBoxContainer">
 			<div class="form-check">
-				<input class="form-check-input" type="radio" name="mesVentes"
+				<input class="form-check-input" type="radio" name="achatVente"
 					id="mesVentes"> <label class="form-check-label"
 					for="mesVentes">Mes ventes </label>
 			</div>
@@ -114,19 +109,19 @@
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value=""
 						id="mesVentesEnCours"> <label class="form-check-label"
-						for="mesVentesEnCours">mes ventes en cours</label>
+						for="mesVentesEnCours">Mes ventes en cours</label>
 				</div>
 
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value=""
 						id="mesVentesNonDebutees" checked> <label
-						class="form-check-label" for="mesVentesNonDebutees">mes vente non débutées</label>
+						class="form-check-label" for="mesVentesNonDebutees">Mes ventes non débutées</label>
 				</div>
 
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value=""
 						id="ventesTerminees" checked> <label
-						class="form-check-label" for="flexCheckChecked">ventes terminées</label>
+						class="form-check-label" for="flexCheckChecked">Ventes terminées</label>
 				</div>
 			</div>
 		</div>
@@ -134,104 +129,124 @@
 	</c:if>
 
 	<div class="mainHome zoomer">
-		<div class="articlesContainer">
-			<div class="artContainer">
-				<img class="imgArt" alt="image d'un article"
-					src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-				<div class="descArtContainer">
-					<img class="pp" alt="photo de l'utilisateur"
-						src="${pageContext.request.contextPath}/assets/pp.jpg">
-					<p class="artName">Chaise Starck</p>
-					<p>Prix: 210 points</p>
-					<p>fin de l'enchère : 16/06/2022</p>
-					<p>vendeur : e.macron</p>
+		
+		<c:if test="${!empty listeArticle}">
+			<c:forEach var="la" items="${listeArticle}">
+				<div class="articlesContainer">
+					<div class="artContainer">
+						<img class="imgArt" alt="image d'un article"
+							src="${pageContext.request.contextPath}/assets/chaise1.jpg">
+						<div class="descArtContainer">
+							<img class="pp" alt="photo de l'utilisateur"
+								src="${pageContext.request.contextPath}/assets/pp.jpg">
+							<p class="artName">${la.nomArticle}</p>
+							<p>Prix: ${la.miseAPrix}</p>
+							<p>fin de l'enchère : ${la.dateFinEncheres}</p>
+							<p>vendeur : e.macron</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="articlesContainer">
-			<div class="artContainer">
-				<img class="imgArt" alt="image d'un article"
-					src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-				<div class="descArtContainer">
-					<img class="pp" alt="photo de l'utilisateur"
-						src="${pageContext.request.contextPath}/assets/pp.jpg">
-					<p class="artName">Chaise Starck</p>
-					<p>Prix: 210 points</p>
-					<p>fin de l'enchère : 16/06/2022</p>
-					<p>vendeur : e.macron</p>
-				</div>
-			</div>
-		</div>
-		<div class="articlesContainer">
-			<div class="artContainer">
-				<img class="imgArt" alt="image d'un article"
-					src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-				<div class="descArtContainer">
-					<img class="pp" alt="photo de l'utilisateur"
-						src="${pageContext.request.contextPath}/assets/pp.jpg">
-					<p class="artName">Chaise Starck</p>
-					<p>Prix: 210 points</p>
-					<p>fin de l'enchère : 16/06/2022</p>
-					<p>vendeur : e.macron</p>
-				</div>
-			</div>
-		</div>
-		<div class="articlesContainer">
-			<div class="artContainer">
-				<img class="imgArt" alt="image d'un article"
-					src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-				<div class="descArtContainer">
-					<img class="pp" alt="photo de l'utilisateur"
-						src="${pageContext.request.contextPath}/assets/pp.jpg">
-					<p class="artName">Chaise Starck</p>
-					<p>Prix: 210 points</p>
-					<p>fin de l'enchère : 16/06/2022</p>
-					<p>vendeur : e.macron</p>
-				</div>
-			</div>
-		</div>
-		<div class="articlesContainer">
-			<div class="artContainer">
-				<img class="imgArt" alt="image d'un article"
-					src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-				<div class="descArtContainer">
-					<img class="pp" alt="photo de l'utilisateur"
-						src="${pageContext.request.contextPath}/assets/pp.jpg">
-					<p class="artName">Chaise Starck</p>
-					<p>Prix: 210 points</p>
-					<p>fin de l'enchère : 16/06/2022</p>
-					<p>vendeur : e.macron</p>
-				</div>
-			</div>
-		</div>
-		<div class="articlesContainer">
-			<div class="artContainer">
-				<img class="imgArt" alt="image d'un article"
-					src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-				<div class="descArtContainer">
-					<img class="pp" alt="photo de l'utilisateur"
-						src="${pageContext.request.contextPath}/assets/pp.jpg">
-					<p class="artName">Chaise Starck</p>
-					<p>Prix: 210 points</p>
-					<p>fin de l'enchère : 16/06/2022</p>
-					<p>vendeur : e.macron</p>
-				</div>
-			</div>
-		</div>
-		<div class="articlesContainer">
-			<div class="artContainer">
-				<img class="imgArt" alt="image d'un article"
-					src="${pageContext.request.contextPath}/assets/chaise1.jpg">
-				<div class="descArtContainer">
-					<img class="pp" alt="photo de l'utilisateur"
-						src="${pageContext.request.contextPath}/assets/pp.jpg">
-					<p class="artName">Chaise Starck</p>
-					<p>Prix: 210 points</p>
-					<p>fin de l'enchère : 16/06/2022</p>
-					<p>vendeur : e.macron</p>
-				</div>
-			</div>
-		</div>
+			</c:forEach>
+		</c:if>
+	
+<!-- 		<div class="articlesContainer"> -->
+<!-- 			<div class="artContainer"> -->
+<!-- 				<img class="imgArt" alt="image d'un article" -->
+<%-- 					src="${pageContext.request.contextPath}/assets/chaise1.jpg"> --%>
+<!-- 				<div class="descArtContainer"> -->
+<!-- 					<img class="pp" alt="photo de l'utilisateur" -->
+<%-- 						src="${pageContext.request.contextPath}/assets/pp.jpg"> --%>
+<!-- 					<p class="artName">Chaise Starck</p> -->
+<!-- 					<p>Prix: 210 points</p> -->
+<!-- 					<p>fin de l'enchère : 16/06/2022</p> -->
+<!-- 					<p>vendeur : e.macron</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="articlesContainer"> -->
+<!-- 			<div class="artContainer"> -->
+<!-- 				<img class="imgArt" alt="image d'un article" -->
+<%-- 					src="${pageContext.request.contextPath}/assets/chaise1.jpg"> --%>
+<!-- 				<div class="descArtContainer"> -->
+<!-- 					<img class="pp" alt="photo de l'utilisateur" -->
+<%-- 						src="${pageContext.request.contextPath}/assets/pp.jpg"> --%>
+<!-- 					<p class="artName">Chaise Starck</p> -->
+<!-- 					<p>Prix: 210 points</p> -->
+<!-- 					<p>fin de l'enchère : 16/06/2022</p> -->
+<!-- 					<p>vendeur : e.macron</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="articlesContainer"> -->
+<!-- 			<div class="artContainer"> -->
+<!-- 				<img class="imgArt" alt="image d'un article" -->
+<%-- 					src="${pageContext.request.contextPath}/assets/chaise1.jpg"> --%>
+<!-- 				<div class="descArtContainer"> -->
+<!-- 					<img class="pp" alt="photo de l'utilisateur" -->
+<%-- 						src="${pageContext.request.contextPath}/assets/pp.jpg"> --%>
+<!-- 					<p class="artName">Chaise Starck</p> -->
+<!-- 					<p>Prix: 210 points</p> -->
+<!-- 					<p>fin de l'enchère : 16/06/2022</p> -->
+<!-- 					<p>vendeur : e.macron</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="articlesContainer"> -->
+<!-- 			<div class="artContainer"> -->
+<!-- 				<img class="imgArt" alt="image d'un article" -->
+<%-- 					src="${pageContext.request.contextPath}/assets/chaise1.jpg"> --%>
+<!-- 				<div class="descArtContainer"> -->
+<!-- 					<img class="pp" alt="photo de l'utilisateur" -->
+<%-- 						src="${pageContext.request.contextPath}/assets/pp.jpg"> --%>
+<!-- 					<p class="artName">Chaise Starck</p> -->
+<!-- 					<p>Prix: 210 points</p> -->
+<!-- 					<p>fin de l'enchère : 16/06/2022</p> -->
+<!-- 					<p>vendeur : e.macron</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="articlesContainer"> -->
+<!-- 			<div class="artContainer"> -->
+<!-- 				<img class="imgArt" alt="image d'un article" -->
+<%-- 					src="${pageContext.request.contextPath}/assets/chaise1.jpg"> --%>
+<!-- 				<div class="descArtContainer"> -->
+<!-- 					<img class="pp" alt="photo de l'utilisateur" -->
+<%-- 						src="${pageContext.request.contextPath}/assets/pp.jpg"> --%>
+<!-- 					<p class="artName">Chaise Starck</p> -->
+<!-- 					<p>Prix: 210 points</p> -->
+<!-- 					<p>fin de l'enchère : 16/06/2022</p> -->
+<!-- 					<p>vendeur : e.macron</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="articlesContainer"> -->
+<!-- 			<div class="artContainer"> -->
+<!-- 				<img class="imgArt" alt="image d'un article" -->
+<%-- 					src="${pageContext.request.contextPath}/assets/chaise1.jpg"> --%>
+<!-- 				<div class="descArtContainer"> -->
+<!-- 					<img class="pp" alt="photo de l'utilisateur" -->
+<%-- 						src="${pageContext.request.contextPath}/assets/pp.jpg"> --%>
+<!-- 					<p class="artName">Chaise Starck</p> -->
+<!-- 					<p>Prix: 210 points</p> -->
+<!-- 					<p>fin de l'enchère : 16/06/2022</p> -->
+<!-- 					<p>vendeur : e.macron</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="articlesContainer"> -->
+<!-- 			<div class="artContainer"> -->
+<!-- 				<img class="imgArt" alt="image d'un article" -->
+<%-- 					src="${pageContext.request.contextPath}/assets/chaise1.jpg"> --%>
+<!-- 				<div class="descArtContainer"> -->
+<!-- 					<img class="pp" alt="photo de l'utilisateur" -->
+<%-- 						src="${pageContext.request.contextPath}/assets/pp.jpg"> --%>
+<!-- 					<p class="artName">Chaise Starck</p> -->
+<!-- 					<p>Prix: 210 points</p> -->
+<!-- 					<p>fin de l'enchère : 16/06/2022</p> -->
+<!-- 					<p>vendeur : e.macron</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</div>
 
 
