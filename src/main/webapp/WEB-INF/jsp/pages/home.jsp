@@ -73,7 +73,7 @@
 		
 			<div class="form-check">
 			
-				<input class="form-check-input" type="radio" name="achat"
+				<input class="form-check-input" type="radio" name="achatVente"
 					id="achat"> <label class="form-check-label"
 					for="achat">Achats</label>
 			</div>
@@ -102,7 +102,7 @@
 
 		<div class="chexkBoxContainer">
 			<div class="form-check">
-				<input class="form-check-input" type="radio" name="mesVentes"
+				<input class="form-check-input" type="radio" name="achatVente"
 					id="mesVentes"> <label class="form-check-label"
 					for="mesVentes">Mes ventes </label>
 			</div>
