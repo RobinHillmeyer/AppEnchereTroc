@@ -10,6 +10,7 @@ public class Enchere {
 	private Article article = new Article();
 	private Utilisateur utilisateur = new Utilisateur();
 
+	private int idUtilisateurWin;
 	// Constructeurs
 	public Enchere() {
 
@@ -40,7 +41,7 @@ public class Enchere {
 	}
 
 	public Article getArticle() {
-		return article;
+		return this.article;
 	}
 
 	public void setArticle(Article article) {
@@ -48,11 +49,19 @@ public class Enchere {
 	}
 
 	public Utilisateur getUtilisateur() {
-		return utilisateur;
+		return this.utilisateur;
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public int getIdUtilisateurWin() {
+		return this.idUtilisateurWin;
+	}
+
+	public void setIdUtilisateurWin(int idUtilisateurWin) {
+		this.idUtilisateurWin = idUtilisateurWin;
 	}
 
 }

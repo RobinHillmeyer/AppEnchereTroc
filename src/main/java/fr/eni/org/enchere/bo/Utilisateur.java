@@ -56,7 +56,10 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
-	public int getNoUtilisateur() {
+    public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville) {
+    }
+
+    public int getNoUtilisateur() {
 		return this.noUtilisateur;
 	}
 
