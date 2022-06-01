@@ -61,9 +61,9 @@
 						placeholder="ex :06 44 00 00 00" required="required">
 				</div>
 				<div class="subDivContForm">
-					<label for="rue">rue</label> <input type="text"
+					<label for="rue">Rue</label> <input type="text"
 						class="inptForm form-control" id="rue" name="rue"
-						placeholder="rue du grand puit" required="required">
+						placeholder="24 rue du grand puit" required="required">
 				</div>
 
 			</div>

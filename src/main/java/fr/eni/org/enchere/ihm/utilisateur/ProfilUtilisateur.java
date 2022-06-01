@@ -64,8 +64,8 @@ public class ProfilUtilisateur extends HttpServlet {
 		if (request.getServletPath().equals("/ProfilUtilisateur")) {
 			MiseAJourUtilisateur(request, response,idUser, listeCodesErreur);
 
-			rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
-			rd.forward(request, response);
+			response.sendRedirect("home");
+
 
 		} else if (request.getServletPath().equals("/SupprimerUtilisateur")) {
 
@@ -84,8 +84,7 @@ public class ProfilUtilisateur extends HttpServlet {
 				e.printStackTrace();
 
 			}
-			rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
-			rd.forward(request, response);
+			response.sendRedirect("home");
 		}
 
 	}

@@ -16,6 +16,14 @@ public interface EnchereDAO {
 	public Enchere selectById(int idArticle)throws BusinessException;
 
 	public List<Enchere>selectEncheresByCategorie(int idCategorie)throws BusinessException;
+	public List<Enchere> selectByFilter(String fitler) throws BusinessException;
+
+	public List<Enchere> selectByEnchereOuverte() throws BusinessException;
+
+	public List<Enchere> selectEncheresEnCours(int idUser) throws BusinessException;
+
+	public List<Enchere> selectEncheresRemportees(int idUtilisateur) throws BusinessException ;
 
 
-}
+
+	}

@@ -46,7 +46,7 @@
 						<label class="form-check-label" for="rememberMe" name="rememberMe">Se
 							souvenir de moi</label>
 					</div>
-					<a href="">mot de passe oublié ?</a>
+					<a href="">Mot de passe oublié ?</a>
 				</div>
 
 			</div>

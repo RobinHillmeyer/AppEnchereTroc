@@ -43,8 +43,8 @@ public class ServletLogin extends HttpServlet {
 			if (session.getAttribute("userIdSessionAttr") != null) {
 				session.removeAttribute("userIdSessionAttr");
 			}
-			rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
-			rd.forward(request, response);
+			response.sendRedirect("home");
+
 		}
 
 	}
@@ -67,9 +67,7 @@ public class ServletLogin extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/connexion/signIn.jsp");
 				rd.forward(request, response);
 			} else {
-				System.out.println("on passe dans le signIn post");
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("home");
 			}
 
 		} else if (request.getServletPath().equals("/signUp")) {
@@ -78,11 +76,12 @@ public class ServletLogin extends HttpServlet {
 
 			if (listeCodesErreur.size() > 0) {
 				request.setAttribute("listeCodesErreur", listeCodesErreur);
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/connexion/signUp.jsp");
-				rd.forward(request, response);
+				for (int list: listeCodesErreur) {
+					System.out.println("code err : "+list);
+				}
+				response.sendRedirect("home");
 			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("home");
 			}
 
 		}
@@ -114,6 +113,7 @@ public class ServletLogin extends HttpServlet {
 			request.setAttribute("userId", user.getNoUtilisateur());
 
 			session.setAttribute("userIdSessionAttr", user.getNoUtilisateur());
+			session.setAttribute("userCredit", user.getCredit());
 
 			Cookie cookieIdUser = new Cookie("cookieIdUser", Integer.toString(user.getNoUtilisateur()));
 			cookieIdUser.setMaxAge(50000);
@@ -138,6 +138,8 @@ public class ServletLogin extends HttpServlet {
 					Cookie cookieIdUser = new Cookie("cookieIdUser", Integer.toString(idUser));
 					cookieIdUser.setMaxAge(50000);
 					response.addCookie(cookieIdUser);
+					Utilisateur user = umng.selectUtilisateurById(idUser);
+					request.getSession().setAttribute("userCredit", user.getCredit());
 				}
 
 			}

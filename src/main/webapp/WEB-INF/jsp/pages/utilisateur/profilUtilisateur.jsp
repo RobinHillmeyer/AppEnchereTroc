@@ -67,7 +67,7 @@
 							placeholder="${user.telephone}" value="${user.telephone}">
 					</div>
 					<div class="subDivContForm">
-						<label for="rue">rue</label> <input type="text"
+						<label for="rue">Rue</label> <input type="text"
 							class="inptForm form-control" id="rue" name="rue"
 							placeholder="${user.rue}" value="${user.rue}">
 					</div>
@@ -157,17 +157,12 @@
 
 			</div>
 
-
-
-
 		</c:if>
 		<c:if test="${empty user}">
 			<h3>Une erreur est survenue</h3>
 		</c:if>
 
-
 	</main>
-
 
 </body>
 
