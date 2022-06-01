@@ -1,12 +1,13 @@
 package fr.eni.org.enchere.bll.encheres;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.eni.org.enchere.BusinessException;
 import fr.eni.org.enchere.bo.Enchere;
+import fr.eni.org.enchere.bo.Utilisateur;
 import fr.eni.org.enchere.dal.DAOFactory;
 import fr.eni.org.enchere.dal.encheres.EnchereDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EnchereManager {
 	
@@ -25,7 +26,6 @@ public class EnchereManager {
 			throw businessException;
 		}
 		for (Enchere enchere: listEnchere) {
-			System.out.println(enchere.getArticle().getNomArticle()+"  depuis le manager");
 		}
 		return listEnchere;
 	}
@@ -58,6 +58,68 @@ public class EnchereManager {
 			throw businessException;
 		}
 
+	}
+	public List<Enchere> selectByCategories(int idCategorie) throws BusinessException {
+		BusinessException businessException = new BusinessException();
+		List<Enchere> listEnchere = new ArrayList<>();
+
+		if (!businessException.hasErreur()) {
+			listEnchere = this.enchereDAO.selectEncheresByCategorie(idCategorie);
+		} else {
+			throw businessException;
+		}
+		return listEnchere;
+
+	}
+	public List<Enchere> selectByFilter(String fitler) throws BusinessException {
+		BusinessException businessException = new BusinessException();
+		List<Enchere> listEnchere = new ArrayList<>();
+
+		if (!businessException.hasErreur()) {
+			listEnchere = this.enchereDAO.selectByFilter(fitler);
+		} else {
+			throw businessException;
+		}
+		return listEnchere;
+
+	}
+
+	public List<Enchere> selectEnchereOuverte() throws BusinessException {
+		BusinessException businessException = new BusinessException();
+		List<Enchere> listEnchere = new ArrayList<>();
+		if (!businessException.hasErreur()) {
+			listEnchere = this.enchereDAO.selectByEnchereOuverte();
+		} else {
+			throw businessException;
+		}
+		for (Enchere enchere: listEnchere) {
+		}
+		return listEnchere;
+	}
+	public List<Enchere> selectEncheresEnCours(int idUser) throws BusinessException {
+		BusinessException businessException = new BusinessException();
+		List<Enchere> listEnchere = new ArrayList<>();
+		if (!businessException.hasErreur()) {
+			listEnchere = this.enchereDAO.selectEncheresEnCours(idUser);
+		} else {
+			throw businessException;
+		}
+		for (Enchere enchere: listEnchere) {
+		}
+		return listEnchere;
+	}
+
+	public List<Enchere> selectEncheresRemportees(int idUser) throws BusinessException {
+		BusinessException businessException = new BusinessException();
+		List<Enchere> listEnchere = new ArrayList<>();
+		if (!businessException.hasErreur()) {
+			listEnchere = this.enchereDAO.selectEncheresRemportees(idUser);
+		} else {
+			throw businessException;
+		}
+		for (Enchere enchere: listEnchere) {
+		}
+		return listEnchere;
 	}
 
 }
