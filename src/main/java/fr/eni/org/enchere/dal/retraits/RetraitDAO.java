@@ -6,6 +6,8 @@ import fr.eni.org.enchere.bo.Retrait;
 public interface RetraitDAO {
 	
 	public void insert(Retrait retrait,int idArticle) throws BusinessException;
+	
+	public Retrait selectByArticleId(int idArticle) throws BusinessException;
 
 
 }

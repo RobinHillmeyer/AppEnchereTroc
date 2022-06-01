@@ -51,4 +51,12 @@ public class Categorie {
 		this.listeArticles = listeArticles;
 	}
 
+	@Override
+	public String toString() {
+		return "Categorie [noCategorie=" + this.noCategorie + ", libelle=" + this.libelle + ", listeArticles="
+				+ this.listeArticles + "]";
+	}
+	
+	
+
 }

@@ -46,11 +46,19 @@ public class Retrait {
 	}
 
 	public Article getArticle() {
-		return article;
+		return this.article;
 	}
 
 	public void setArticle(Article article) {
 		this.article = article;
 	}
+
+	@Override
+	public String toString() {
+		return "Retrait [rue=" + this.rue + ", codePostal=" + this.codePostal + ", ville=" + this.ville + ", article="
+				+ this.article + "]";
+	}
+	
+	
 
 }

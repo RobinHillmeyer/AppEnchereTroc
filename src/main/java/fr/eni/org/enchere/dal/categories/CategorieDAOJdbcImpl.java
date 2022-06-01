@@ -14,7 +14,7 @@ import fr.eni.org.enchere.dal.ConnectionProvider;
 
 public class CategorieDAOJdbcImpl implements CategorieDAO{
 	
-	private static final String SELECT_CATEGORIE_BY_ID = "SELECT libelle FROM CATEGORIES WHERE no_categorie = ?";
+	private static final String SELECT_CATEGORIE_BY_ID = "SELECT libelle, no_categorie FROM CATEGORIES WHERE no_categorie = ?";
 	private static final String SELECT_ALL_CATEGORIE = "SELECT no_categorie, libelle FROM CATEGORIES";
 
 	@Override
@@ -48,7 +48,9 @@ public class CategorieDAOJdbcImpl implements CategorieDAO{
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
+				System.out.println("On passe dans la DAL");
 				categorie.setNoCategorie(rs.getInt("no_categorie"));
+				categorie.setLibelle(rs.getString("libelle"));
 			}
 			
 		} catch (Exception e) {

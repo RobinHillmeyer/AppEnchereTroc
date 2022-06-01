@@ -32,11 +32,11 @@
 		</c:if>
 		<c:if test="${!empty userIdSessionAttr}">
 		<a href="${pageContext.request.contextPath}/ProfilUtilisateur"
-				class="linkSignIn">Encheres</a>
+				class="linkSignIn">Enchères</a>
 		<a href="${pageContext.request.contextPath}/NouvelleVente"
 				class="linkSignIn">Vendre un article</a>
 		<a href="${pageContext.request.contextPath}/ProfilUtilisateur"
-				class="linkSignIn">Profile</a>
+				class="linkSignIn">Profil</a>
 		<a href="${pageContext.request.contextPath}/signOut"
 				class="linkSignIn">Déconnexion</a>
 			
@@ -89,7 +89,7 @@
 				<div class="chexkBoxContainer">
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="achat" value="achat" onClick="handleDisableVente();" id="achat">
+						<input class="form-check-input" type="radio" name="achatVente" value="achat" onClick="handleDisableVente();" id="achat">
 						<label class="form-check-label" for="achat">Achats</label>
 					</div>
 
@@ -97,7 +97,7 @@
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="enchereOuvertes" name="enchereOuvertes"
 								id="enchereOuvertes"> <label class="form-check-label"
-								for="enchereOuvertes">Enchère ouvertes</label>
+								for="enchereOuvertes">Enchères ouvertes</label>
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="enchereEnCours" name="enchereEnCours"
@@ -115,7 +115,7 @@
 
 				<div class="chexkBoxContainer">
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="mesVentes" value="mesVentes"
+						<input class="form-check-input" type="radio" name="achatVente" value="mesVentes"
 							   onClick="handleDisableAchat();"
 							   id="mesVentes"> <label class="form-check-label"
 							   for="mesVentes">Mes ventes</label>
@@ -153,7 +153,7 @@
 	<div class="mainHome zoomer">
 		<c:if test="${!empty listEncheres}">
 			<c:forEach var="enchere" items="${listEncheres}">
-				<a class="cardLink" href="${pageContext.request.contextPath}/DetailVente">
+				<a class="cardLink" href="${pageContext.request.contextPath}/DetailVente?idArticle=${article.idArticle}"> <!-- TODO Recuperer Article -->
 					<div class="articlesContainer">
 						<div class="artContainer">
 							<img class="imgArt" alt="image d'un article"

@@ -23,9 +23,11 @@ public abstract class CodeResultatDAL {
 	// Code erreur pour RETRAIT
 	public static final int INSERT_RETRAIT_NULL = 10011;
 	public static final int ECHEC_INSERT_RETRAIT = 10012;
+	public static final int ECHEC_SELECT_RETRAIT_BY_ARTICLE_ID = 10013;
 	
 	// Code erreur pour CATEGORIES
-	public static final int ECHEC_SELECT_CATEGORIE_BY_ID = 10013;
-	public static final int ECHEC_SELECT_ALL_CATEGORIES = 10014;
+	public static final int ECHEC_SELECT_CATEGORIE_BY_ID = 10014;
+	public static final int ECHEC_SELECT_ALL_CATEGORIES = 10015;
+	
 
 }

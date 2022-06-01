@@ -37,6 +37,7 @@ public class CategorieManager {
 	}
 	
 	public Categorie selectById(int id) throws BusinessException {
+		System.out.println("On passe par le manager");
 		return this.categorieDAO.selectById(id);
 	}
 	

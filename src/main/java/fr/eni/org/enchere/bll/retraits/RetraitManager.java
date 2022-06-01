@@ -54,6 +54,11 @@ public class RetraitManager {
 	
 	}
 	
+	public Retrait selectById(int idArticle) throws BusinessException {
+		System.out.println("On passe par le manager");
+		return this.retraitDAO.selectByArticleId(idArticle);
+	}
+	
 	
 	private void validerRue(String rue, BusinessException businessException) {
 		if (rue == null || rue.trim().length() > 30) {

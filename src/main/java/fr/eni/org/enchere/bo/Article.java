@@ -188,4 +188,17 @@ public class Article {
 		return this.etatVente;
 	}
 
+	@Override
+	public String toString() {
+		return "Article [id=" + this.id + ", nomArticle=" + this.nomArticle + ", description=" + this.description
+				+ ", dateDebutEncheres=" + this.dateDebutEncheres + ", dateFinEncheres=" + this.dateFinEncheres
+				+ ", miseAPrix=" + this.miseAPrix + ", prixVente=" + this.prixVente + ", noUtilisateur="
+				+ this.noUtilisateur + ", etatVente=" + this.etatVente + ", noCategorie=" + this.noCategorie
+				+ ", lieuRetrait=" + this.lieuRetrait + ", categorieArticle=" + this.categorieArticle
+				+ ", listeEncheres=" + this.listeEncheres + ", acheteur=" + this.acheteur + ", vendeur=" + this.vendeur
+				+ "]";
+	}
+	
+	
+
 }
