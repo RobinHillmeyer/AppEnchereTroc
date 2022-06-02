@@ -340,10 +340,7 @@
 <div class="mainHome zoomer">
 	<c:if test="${!empty listEncheres}">
 		<c:forEach var="enchere" items="${listEncheres}">
-		<form class="mainHome zoomer" method="post"
-			  action="${pageContext.request.contextPath}/DetailVente">
-			<button type="submit" class="btnFormCard cardLink">
-				<input type="hidden" name="idArticle" value="${enchere.article.id}">
+			<a class="cardLink" href="${pageContext.request.contextPath}/DetailVente?idArticle=${enchere.article.id}"> <!-- TODO Recuperer Article -->
 				<div class="articlesContainer">
 					<div class="artContainer">
 						<img class="imgArt" alt="image d'un article"
@@ -358,8 +355,7 @@
 						</div>
 					</div>
 				</div>
-			</button>
-			<form>
+			</a>
 		</c:forEach>
 	</c:if>
 </div>
