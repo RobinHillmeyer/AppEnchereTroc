@@ -19,7 +19,7 @@
 	align-content: center;
 	justify-content: space-between;
 	width: 600px;
-	margin: 1%
+	margin: 1%;
 }
 
 .subDivContDetail {
@@ -43,6 +43,20 @@
 	margin-bottom: 3%;
 }
 
+.propositionContainer{
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+}
+
+.divWidth {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
 .btnFormSignIn {
 	display: flex;
 	justify-content: space-between;
@@ -51,6 +65,12 @@
 .btnFormSell {
 	display: flex;
 	justify-content: space-between;
+	margin: 2rem;
+}
+
+.btnFormEncherir {
+	display: flex;
+	justify-content: center;
 	margin: 2rem;
 }
 
@@ -126,4 +146,9 @@ fieldset {
 .retrait {
 	width: 100px;
 	text-align: center;
+}
+
+.proposition {
+	width: 125px;
+	text-align: left;
 }

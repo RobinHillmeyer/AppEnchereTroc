@@ -62,13 +62,23 @@
     </c:if>
     
     <form action="${pageContext.request.contextPath}/DetailVente" method="post">
-    
-        <div  class="subDivContDetail">
-            <label for="proposition">Ma proposition : </label>
-            <input type="number" name="proposition" id="proposition" min="0" class="inptForm form-control inptFormNumber">
-        </div>
+    	
+    	<fieldset class="propositionContainer">
+    	
+    		<legend class="proposition">Proposition</legend>
+    		
+	        <div class="divWidth">
+	            <label for="proposition">Mon enchère : </label>
+	            <input type="number" name="proposition" id="proposition" min="0" class="inptForm form-control inptFormNumber">
+	        </div>
+	        
+	        <div class="btnFormEncherir">
+	        	<input type="submit" value="Enchérir" class="btn btn-success col-md-3">
+	    	</div>
+	        
+        </fieldset>
         
-        <input type="submit" value="Enchérir" class="btn btn-success col-md-3">
+        
         
     </form>
     
