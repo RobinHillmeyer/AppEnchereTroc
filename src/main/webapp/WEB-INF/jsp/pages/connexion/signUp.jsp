@@ -19,18 +19,20 @@
 
 	<main class="mainUp slideRight">
 
-		<form form method="post"
-			action="${pageContext.request.contextPath}/signUp" class="formSignUp">
+		<form form method="post" action="${pageContext.request.contextPath}/signUp" class="formSignUp">
+		
 			<div class="form-group row">
 				<label for="identifiant" class="col-sm-2 col-form-label">Identifiant</label>
+				
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="identifiant"
 						name="identifiant" placeholder="ex : Marcel" required="required">
 				</div>
 			</div>
+			
 			<div class="form-group row">
-				<label for="mdp" class="col-sm-2 col-form-label">Mot de
-					passe</label>
+				<label for="mdp" class="col-sm-2 col-form-label">Mot de passe</label>
+				
 				<div class="col-sm-10">
 					<input type="password" class="form-control" id="mdp" name="mdp"
 						placeholder="entrez votre mot de passe" required="required">
@@ -43,8 +45,7 @@
 				<div class="form-group">
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="rememberMe">
-						<label class="form-check-label" for="rememberMe" name="rememberMe">Se
-							souvenir de moi</label>
+						<label class="form-check-label" for="rememberMe" name="rememberMe">Se souvenir de moi</label>
 					</div>
 					<a href="">Mot de passe oublié ?</a>
 				</div>

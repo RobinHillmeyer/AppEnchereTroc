@@ -30,13 +30,9 @@ public class RetraitManager {
 			ArticleManager am = new ArticleManager();
 			
 			try {
-				System.out.println("on passe dans le try  l 37 retrait manager");
 				art=am.selectById(idArticle);
-
 			}catch(Exception e){
-				System.out.println("on passe dans le catch l 41 retrait manager ");
 				e.printStackTrace();
-			
 			}
 
 			retrait = new Retrait();
@@ -46,19 +42,18 @@ public class RetraitManager {
 			retrait.setVille(ville);
 			
 			this.retraitDAO.insert(retrait, idArticle);
+			
 		} else {
 			throw businessException;
 		}
 		
 		return retrait;
-	
 	}
 	
 	public Retrait selectById(int idArticle) throws BusinessException {
 		System.out.println("On passe par le manager");
 		return this.retraitDAO.selectByArticleId(idArticle);
 	}
-	
 	
 	private void validerRue(String rue, BusinessException businessException) {
 		if (rue == null || rue.trim().length() > 30) {
@@ -77,6 +72,4 @@ public class RetraitManager {
 			businessException.addErreur(CodeResultatBLL.REGLE_RETRAIT_VILLE_ERREUR);
 		}
 	}
-	
-	
 }

@@ -23,19 +23,22 @@
 
 	<main class="mainUp slideLeft">
 
-		<form class="formUp" method="post"
-			action="${pageContext.request.contextPath}/signIn">
+		<form class="formUp" method="post" action="${pageContext.request.contextPath}/signIn">
+		
 			<div class="divContForm">
+			
 				<div class="subDivContForm">
 					<label for="pseudo">Pseudo</label> <input type="text"
 						class="inptForm form-control" id="pseudo" name="pseudo"
 						placeholder="ex : Marcel16" required="required">
 				</div>
+				
 				<div class="subDivContForm">
 					<label for="nom">Nom</label> <input type="text"
 						class="inptForm form-control" id="nom" name="nom"
 						placeholder="ex : Marcel" required="required">
 				</div>
+				
 			</div>
 
 			<div class="divContForm">
@@ -45,6 +48,7 @@
 						class="inptForm form-control" id="prenom" name="prenom"
 						placeholder="ex : Lechat" required="required">
 				</div>
+				
 				<div class="subDivContForm">
 					<label for="email">Email</label> <input type="email"
 						class="inptForm form-control" id="email" name="email"
@@ -60,6 +64,7 @@
 						class="inptForm form-control" id="telephone" name="telephone"
 						placeholder="ex :06 44 00 00 00" required="required">
 				</div>
+				
 				<div class="subDivContForm">
 					<label for="rue">Rue</label> <input type="text"
 						class="inptForm form-control" id="rue" name="rue"
@@ -75,6 +80,7 @@
 						class="inptForm form-control" id="cp" name="cp"
 						placeholder="ex : 64600">
 				</div>
+				
 				<div class="subDivContForm">
 					<label for="ville">Ville</label> <input type="text"
 						class="inptForm form-control" id="ville" name="ville"
@@ -90,6 +96,7 @@
 						class="inptForm form-control" id="mdp" name="mdp"
 						required="required">
 				</div>
+				
 				<div class="subDivContForm">
 					<label for="confMdp">Confirmation</label> <input type="password"
 						class="inptForm form-control" id="confMdp" name="confMdp"
@@ -97,6 +104,7 @@
 				</div>
 
 			</div>
+			
 			<div class="btnFormSignIn">
 				<button type="submit" class="btn btn-primary col-md-3">Créer</button>
 				<a class="btn btn-danger col-md-3"
@@ -104,7 +112,6 @@
 			</div>
 		</form>
 	</main>
-
 
 </body>
 

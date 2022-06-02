@@ -25,11 +25,11 @@
 		<c:if test="${!empty user}">
 			<img class="ppPr" alt="" src="${pageContext.request.contextPath}/assets/pp.jpg">
 
-			<form class="formUp" method="post"
-				action="${pageContext.request.contextPath}/ProfilUtilisateur">
+			<form class="formUp" method="post" action="${pageContext.request.contextPath}/ProfilUtilisateur">
 				<input type="hidden" name="userId" value="${user.noUtilisateur}" />
 
 				<div class="divContForm">
+				
 					<div class="subDivContForm">
 						<label for="pseudo">Pseudo</label> <input type="text"
 							class="inptForm form-control" id="pseudo"
@@ -42,6 +42,7 @@
 							class="inptForm form-control" id="nom" name="nom"
 							placeholder="${user.nom}" value="${user.nom}">
 					</div>
+					
 				</div>
 
 				<div class="divContForm">
@@ -51,6 +52,7 @@
 							class="inptForm form-control" id="prenom" name="prenom"
 							placeholder="${user.prenom}" value="${user.prenom}">
 					</div>
+					
 					<div class="subDivContForm">
 						<label for="email">Email</label> <input type="email"
 							class="inptForm form-control" id="email" name="email"
@@ -66,6 +68,7 @@
 							class="inptForm form-control" id="telephone" name="telephone"
 							placeholder="${user.telephone}" value="${user.telephone}">
 					</div>
+					
 					<div class="subDivContForm">
 						<label for="rue">Rue</label> <input type="text"
 							class="inptForm form-control" id="rue" name="rue"
@@ -81,6 +84,7 @@
 							class="inptForm form-control" id="cp" name="cp"
 							placeholder="${user.codePostal}" value="${user.codePostal}">
 					</div>
+					
 					<div class="subDivContForm">
 						<label for="ville">Ville</label> <input type="text"
 							class="inptForm form-control" id="ville" name="ville"
@@ -95,6 +99,7 @@
 							type="password" class="inptForm form-control" id="holdmdp"
 							name="holdmdp">
 					</div>
+					
 					<div class="subDivContForm">
 						<label for="mdp">Nouveau mot de passe</label> <input
 							type="password" class="inptForm form-control" id="mdp" name="mdp"
@@ -102,15 +107,18 @@
 					</div>
 
 				</div>
+				
 				<div class="btnConf">
 					<label for="confMdp">Confirmation</label> <input type="password"
 						class="inptForm form-control" id="confMdp" name="confMdp">
 				</div>
+				
 				<div class="btnConf">
 					<p>Crédit :
 					<p>
 					<p class="creditTxt">${user.credit}</p>
 				</div>
+				
 				<div class="btnFormSignIn">
 
 					<a href="#"
@@ -129,6 +137,8 @@
 							</div>
 						</div>
 					</div>
+					
+				 </div>
 			</form>
 
 			<a href="#"
@@ -138,7 +148,6 @@
 
 			<div id="modalDelete" class="modal slideDown">
 				<div class=divCOntModal>
-
 
 					<p>Vous êtes sur le point de supprimer votre profil</p>
 
@@ -154,10 +163,9 @@
 						</form>
 					</div>
 				</div>
-
 			</div>
-
 		</c:if>
+		
 		<c:if test="${empty user}">
 			<h3>Une erreur est survenue</h3>
 		</c:if>

@@ -17,17 +17,17 @@ public abstract class CodeResultatDAL {
 	public static final int SUPPRESSION_UTILISATEUR_ERREUR = 10008;
 	public static final int LECTURE_LISTE_UTILISATEUR_ECHEC = 10009;
 	public static final int LECTURE_UTILISATEUR = 10010;
-	public static final int LECTURE_UTILISATEURS = 10015;
+	public static final int LECTURE_UTILISATEURS = 10011;
 
 	
 	// Code erreur pour RETRAIT
-	public static final int INSERT_RETRAIT_NULL = 10011;
-	public static final int ECHEC_INSERT_RETRAIT = 10012;
-	public static final int ECHEC_SELECT_RETRAIT_BY_ARTICLE_ID = 10013;
+	public static final int INSERT_RETRAIT_NULL = 10012;
+	public static final int ECHEC_INSERT_RETRAIT = 10013;
+	public static final int ECHEC_SELECT_RETRAIT_BY_ARTICLE_ID = 10014;
 	
 	// Code erreur pour CATEGORIES
-	public static final int ECHEC_SELECT_CATEGORIE_BY_ID = 10014;
-	public static final int ECHEC_SELECT_ALL_CATEGORIES = 10015;
+	public static final int ECHEC_SELECT_CATEGORIE_BY_ID = 10015;
+	public static final int ECHEC_SELECT_ALL_CATEGORIES = 10016;
 	
 
 }

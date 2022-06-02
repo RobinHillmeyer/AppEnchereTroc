@@ -17,23 +17,6 @@ public class CategorieDAOJdbcImpl implements CategorieDAO{
 	private static final String SELECT_CATEGORIE_BY_ID = "SELECT libelle, no_categorie FROM CATEGORIES WHERE no_categorie = ?";
 	private static final String SELECT_ALL_CATEGORIE = "SELECT no_categorie, libelle FROM CATEGORIES";
 
-	@Override
-	public void insert(Categorie categorie) throws BusinessException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Categorie update() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Categorie categorie) throws BusinessException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Categorie selectById(int id) throws BusinessException {
@@ -75,7 +58,6 @@ public class CategorieDAOJdbcImpl implements CategorieDAO{
 				}
 			}
 		}
-		
 		return categorie;
 	}
 	
@@ -93,11 +75,13 @@ public class CategorieDAOJdbcImpl implements CategorieDAO{
 			while (rs.next()) {
 				listeCategorie.add(new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")));
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.ECHEC_SELECT_ALL_CATEGORIES);
 			throw businessException;
+			
 		} finally {
 			if (rs != null) {
 				try {
@@ -114,8 +98,6 @@ public class CategorieDAOJdbcImpl implements CategorieDAO{
 				}
 			}
 		}
-		
 		return listeCategorie;
 	}
-
 }

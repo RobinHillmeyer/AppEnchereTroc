@@ -340,7 +340,7 @@
 <div class="mainHome zoomer">
 	<c:if test="${!empty listEncheres}">
 		<c:forEach var="enchere" items="${listEncheres}">
-			<a class="cardLink" href="${pageContext.request.contextPath}/DetailVente?idArticle=${enchere.article.id}"> <!-- TODO Recuperer Article -->
+			<a class="cardLink" href="${pageContext.request.contextPath}/DetailVente?idArticle=${enchere.article.id}"> 
 				<div class="articlesContainer">
 					<div class="artContainer">
 						<img class="imgArt" alt="image d'un article"

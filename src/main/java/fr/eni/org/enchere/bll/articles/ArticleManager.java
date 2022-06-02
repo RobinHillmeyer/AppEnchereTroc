@@ -24,9 +24,6 @@ public class ArticleManager {
 		
 		this.validerNomArticle(nomArticle, businessException);
 		this.validerDescription(description, businessException);
-		//this.validerDateDebutEnchere(dateDebutEnchere, businessException);
-		//this.validerDateFinEnchere(dateFinEnchere, businessException);
-		//this.validermiseAPrix(miseAPrix, businessException);
 		
 		if (!businessException.hasErreur()) {
 			article = new Article();
@@ -36,7 +33,6 @@ public class ArticleManager {
 			article.setDateDebutEncheres(dateDebutEnchere);
 			article.setDateFinEncheres(dateFinEnchere);
 			article.setNoCategorie(noCategorie);
-		
 			
 			this.articleDAO.insert(article, idUser);
 		} else {
@@ -44,13 +40,7 @@ public class ArticleManager {
 		}
 		
 		return article;
-	}
-	
-	
-//	private void validermiseAPrix(int miseAPrix, BusinessException businessException) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	}	
 
 	public void supprimerArticle(Article article) throws BusinessException {
 		this.articleDAO.delete(article);
@@ -75,17 +65,4 @@ public class ArticleManager {
 			businessException.addErreur(CodeResultatBLL.REGLE_ARTICLE_DESCRIPTION_ERREUR);
 		}
 	}
-	
-//	private void validerDateFinEnchere(LocalDate dateFinEnchere, BusinessException businessException) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-//	private void validerDateDebutEnchere(LocalDate dateDebutEnchere, BusinessException businessException) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-
-
 }

@@ -22,7 +22,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE no_article = ?;";
 	private static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS;";
 	private static final String SELECT_ARTICLE_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article = ?;";
-//	private static final String SELECT_ARTICLE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE no_article = ?;";
 	
 	@Override
 	public void insert(Article article, int idUser) throws BusinessException {
@@ -32,9 +31,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			throw businessException;
 		}
 
-		// Creation du Prepare Statment
 		PreparedStatement pstmt = null;
-		// Creation du ResultSet
 		ResultSet rs = null;
 
 		try(Connection cnx = ConnectionProvider.getConnection()) {
@@ -54,6 +51,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			if (rs.next()) {
 				article.setId(rs.getInt(1));
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
@@ -75,9 +73,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					e.printStackTrace();
 				}
 			}
-
 		}
-
 	}
 
 	@Override
@@ -95,6 +91,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.ECHEC_DELETE_ARTICLE);
 			throw businessException;
+			
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -135,6 +132,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.ECHEC_SELECT_ALL);
 			throw businessException;
+			
 		} finally {
 			if (rs != null) {
 				try {
@@ -150,7 +148,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					e.printStackTrace();
 				}
 			}
-
 		}
 		return listeArticles;
 	}
@@ -199,9 +196,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					e.printStackTrace();
 				}
 			}
-
 		}
 		return article;
 	}
-
 }

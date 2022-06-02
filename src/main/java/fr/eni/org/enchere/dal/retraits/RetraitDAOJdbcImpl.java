@@ -19,8 +19,6 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 	public void insert(Retrait retrait, int idArticle) throws BusinessException {
 
 		if (retrait == null) {
-			System.out.println("on passe dans le if retrat null ");
-
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.INSERT_RETRAIT_NULL);
 			throw businessException;
@@ -31,8 +29,6 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 
 		try(Connection cnx = ConnectionProvider.getConnection()) {	
 
-			System.out.println("on passe dans insert avec l'id article :  "+idArticle);
-
 			pstmt = cnx.prepareStatement(RetraitDAOJdbcImpl.INSERT_RETRAIT);
 			pstmt.setInt(1, idArticle); 
 			pstmt.setString(2, retrait.getRue());
@@ -42,12 +38,11 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
-			System.out.println("on passe pas dans insert ");
-
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.ECHEC_INSERT_RETRAIT);
 			throw businessException;
+			
 		} finally {
 			if (rs != null) {
 				try {
@@ -79,7 +74,6 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				System.out.println("On passe dans la DAL");
 				retrait.setRue(rs.getString("rue"));
 				retrait.setCodePostal(rs.getString("code_postal"));
 				retrait.setVille(rs.getString("ville"));
@@ -107,8 +101,6 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
 				}
 			}
 		}
-
 		return retrait;
 	}
-
 }

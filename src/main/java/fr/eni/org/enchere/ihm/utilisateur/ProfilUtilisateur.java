@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import fr.eni.org.enchere.BusinessException;
 import fr.eni.org.enchere.bll.utilisateurs.UtilisateurManager;
 import fr.eni.org.enchere.bo.Utilisateur;
@@ -26,22 +27,25 @@ public class ProfilUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		
 		List<Integer> listeCodesErreur = new ArrayList<>();
-		um = new UtilisateurManager();
+		this.um = new UtilisateurManager();
 		Utilisateur user;
+		
 			try {
 				int idUser =(int)request.getSession().getAttribute("userIdSessionAttr");
 				System.out.println(idUser+" id user depuis profile user");
-				user = um.selectUtilisateurById(idUser);
+				user = this.um.selectUtilisateurById(idUser);
 				System.out.println(user.toString()+"  user depuis profile user");
 
 				request.setAttribute("user", user);
+				
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
 				e.printStackTrace();
 				listeCodesErreur.add(CodeResultatServlet.ECHEC_LECTURE_USER);
-
 			}
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/utilisateur/profilUtilisateur.jsp");
@@ -52,25 +56,25 @@ public class ProfilUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		
 		RequestDispatcher rd;
 		request.setCharacterEncoding("UTF-8");
 		List<Integer> listeCodesErreur = new ArrayList<>();
 		HttpSession session = request.getSession();
 
-		
 		int idUser =(int)request.getSession().getAttribute("userIdSessionAttr");
 
 		if (request.getServletPath().equals("/ProfilUtilisateur")) {
-			MiseAJourUtilisateur(request, response,idUser, listeCodesErreur);
+			this.MiseAJourUtilisateur(request, response,idUser, listeCodesErreur);
 
 			response.sendRedirect("home");
-
 
 		} else if (request.getServletPath().equals("/SupprimerUtilisateur")) {
 
 			try {
-				um.deleteUser(idUser);
+				this.um.deleteUser(idUser);
 				Cookie[] cookies = request.getCookies();
 				for (Cookie cookie : cookies) {
 					cookie.setMaxAge(0);
@@ -86,11 +90,8 @@ public class ProfilUtilisateur extends HttpServlet {
 			}
 			response.sendRedirect("home");
 		}
-
 	}
 	
-	
-
 	public void MiseAJourUtilisateur(HttpServletRequest request, HttpServletResponse response,int userIdentifiant,List<Integer> listeCodesErreur) {
 
 		Utilisateur userUpdate = new Utilisateur();
@@ -112,7 +113,7 @@ public class ProfilUtilisateur extends HttpServlet {
 				
 
 		try {
-			userBeforUpdate = um.selectUtilisateurById(userIdentifiant);
+			userBeforUpdate = this.um.selectUtilisateurById(userIdentifiant);
 
 			if (userBeforUpdate != null) {
 
@@ -175,15 +176,13 @@ public class ProfilUtilisateur extends HttpServlet {
 					userAfterUpdate.setMotDePasse(userBeforUpdate.getMotDePasse());
 				}
 
-				um.updateUser(userAfterUpdate, userIdentifiant, confMdp,userBeforUpdate);
+				this.um.updateUser(userAfterUpdate, userIdentifiant, confMdp,userBeforUpdate);
 
-				System.out.println("on à update");
+				System.out.println("on ï¿½ update");
 			}
 		} catch (BusinessException e) {
 			listeCodesErreur.add(CodeResultatServlet.ECHEC_UPDATE_USER);
 			request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
-
 		}
 	}
-
 }

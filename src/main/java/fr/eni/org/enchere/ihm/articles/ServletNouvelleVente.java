@@ -47,8 +47,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		UtilisateurManager um = new UtilisateurManager();
 		int idUser =(int)request.getSession().getAttribute("userIdSessionAttr");
 		
-		
-		try {		//TODO Recuperer l'idUser
+		try {		
 			String rue = um.selectUtilisateurById(idUser).getRue();
 			String codePostal = um.selectUtilisateurById(idUser).getCodePostal();
 			String ville = um.selectUtilisateurById(idUser).getVille();
@@ -59,10 +58,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
-
-
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/nouvelle_vente/nouvelleVente.jsp");
 		rd.forward(request, response);
@@ -88,9 +83,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		// r�cup�ration de l'id Utilisateur par la session .
 		HttpSession session = request.getSession();
 		int idUser =(int)request.getSession().getAttribute("userIdSessionAttr");
-		//TODO potentielement dans le DOGET
-		System.out.println(idUser+" idUser depuis nouvelle vente");
-
+		
 		try {
 			nomArticle = request.getParameter("nom_article");
 			description = request.getParameter("description");
@@ -102,13 +95,11 @@ public class ServletNouvelleVente extends HttpServlet {
 			ArticleManager articleManager = new ArticleManager();
 			artcl = articleManager.ajouterArticle(nomArticle, description, debutEnchere, finEnchere, miseAPrix, noCategorie,idUser);
 
-
 			request.setAttribute("article", artcl);
 
 			System.out.println("idArcticle dans servlet l79 "+artcl.getId());
 
 			idArticle = artcl.getId();
-
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,9 +117,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
-		rd.forward(request, response);
+		
+		response.sendRedirect("home");
 	}
-
 }

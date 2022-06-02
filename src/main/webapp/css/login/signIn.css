@@ -22,6 +22,16 @@
 	margin: 1%
 }
 
+.subDivContDetail {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-content: center;
+	justify-content: space-between;
+	width: 600px;
+	margin: 1% 0 1% 0;
+}
+
 .divSellContForm {
 	display: flex;
 	flex-direction: row;
@@ -46,6 +56,10 @@
 
 .inptForm {
 	width: 400px;
+}
+
+.inptFormNumber {
+	width: 150px;
 }
 
 .btnConf {

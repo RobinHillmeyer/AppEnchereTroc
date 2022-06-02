@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.org.enchere.bll.articles.ArticleManager;
 import fr.eni.org.enchere.bll.categories.CategorieManager;
+import fr.eni.org.enchere.bll.retraits.RetraitManager;
 import fr.eni.org.enchere.bll.utilisateurs.UtilisateurManager;
 import fr.eni.org.enchere.bo.Article;
 import fr.eni.org.enchere.bo.Categorie;
+import fr.eni.org.enchere.bo.Retrait;
 import fr.eni.org.enchere.bo.Utilisateur;
 
 /**
@@ -33,6 +35,7 @@ public class ServletDetailVente extends HttpServlet {
 		UtilisateurManager um = new UtilisateurManager();
 		CategorieManager cm = new CategorieManager();
 		Categorie categorie = new Categorie();
+		RetraitManager rm = new RetraitManager();
 		int idArticle =Integer.parseInt(request.getParameter("idArticle"));
 
 		try {
@@ -43,7 +46,8 @@ public class ServletDetailVente extends HttpServlet {
 				request.setAttribute("categorie", categorie);
 				Utilisateur utilisateur = um.selectUtilisateurById(article.getNoUtilisateur());
 				request.setAttribute("utilisateur", utilisateur);
-
+				Retrait retrait = rm.selectById(idArticle);
+				request.setAttribute("retrait", retrait);
 			}
 
 		} catch (Exception e) {
@@ -59,7 +63,10 @@ public class ServletDetailVente extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doGet(request, response);
+		
+		// TODO Comment récupérer l'enchere ajoutée dans detailVente.jsp, je me pose la question, cela me turlupine	
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
+		rd.forward(request, response); 
 	}
 
 }
