@@ -1,0 +1,77 @@
+
+.bodyAdmin {
+    height: 100%;
+    overflow: auto;
+    background-image: linear-gradient(#0C6EA1 10%, #fed6e3 100%);
+}
+
+.bgHeaderAdmin {
+    display: flex;
+    top: 0;
+    background-color: #0C6EA1;
+    height: 120px;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+.linkSignAdmin{
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-items: flex-end;
+    margin-top:10px;
+}
+.linkSignInAdmin{
+    display: flex;
+    margin-right: 2%;
+    text-decoration: none;
+    color: white;
+    align-self: center;
+
+}
+.exit{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-radius: 100%;
+    height: 78px;
+    width: 78px;
+    background-image: linear-gradient(#0C6EA1 10%, #fed6e3 100%);
+    border: 2px white solid;
+}
+
+.mainAdmin,.formAdmin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    justify-items: center;
+    padding: 1%;
+}
+
+.actionContainer{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    padding: 2%;
+    height: 100px;
+    width: 1100px;
+    background-color: #144A7F;
+    border-radius: 8px;
+    border: white 1px solid;
+    margin-bottom: 20px;
+}
+
+.inptSlctAdm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    justify-items: center;
+
+}
+.inptSlctAdm>label ,.txtAdm{
+    color: white;
+    text-align: center;
+}

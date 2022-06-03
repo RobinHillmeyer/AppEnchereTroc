@@ -26,9 +26,7 @@
 	    <hr>
 	    
 	    <div class="formUp">
-	    
 	        <form action="<%=request.getContextPath()%>/NouvelleVente" method="post" class="form_article">
-	        
 	        	<div class="divSellContForm">
 		            <label for="article">Article : </label>
 		            <input type="text" class="inptForm form-control" name="nom_article" id="article" required="required">

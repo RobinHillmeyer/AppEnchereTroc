@@ -16,19 +16,13 @@ public class CategorieManager {
 		this.categorieDAO = DAOFactory.getCategorieDAO();
 	}
 
-	public List<Categorie> ajouterCategorie(int noCategorie, String libelle) throws BusinessException {
+	public List<Categorie> ajouterCategorie( String libelle) throws BusinessException {
 		BusinessException businessException = new BusinessException();
 		
 		List<Categorie> categories = new ArrayList<>();
-		
-		//TODO IT2 Ajout par Admin
+
 		if (!businessException.hasErreur()) {
-			
-			categories.add(new Categorie(1, "Informatique"));
-			categories.add(new Categorie(2, "Ameublement"));
-			categories.add(new Categorie(3, "Vetement"));
-			categories.add(new Categorie(4, "Sport & Loisirs"));
-			
+			this.categorieDAO.insert(libelle);
 		} else {
 			throw businessException;
 		}
@@ -37,7 +31,6 @@ public class CategorieManager {
 	}
 	
 	public Categorie selectById(int id) throws BusinessException {
-		System.out.println("On passe par le manager");
 		return this.categorieDAO.selectById(id);
 	}
 	

@@ -6,7 +6,7 @@
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		type="javax.sql.DataSource"
 		
-		url="jdbc:sqlserver://localhost:1433;databasename=BDD_TROC_ENCHERES"
+		url="jdbc:sqlserver://UFO-GAMING:1433;databasename=BDD_TROC_ENCHERES"
 		username="utilisateurBDD"
 		password="Pa$$w0rd"
 		

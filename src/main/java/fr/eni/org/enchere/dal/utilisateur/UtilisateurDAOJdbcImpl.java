@@ -28,6 +28,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_MAIL = "SELECT no_utilisateur, pseudo,  mot_de_passe, administrateur FROM UTILISATEURS where email=?";
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?,mot_de_passe= ?  WHERE no_utilisateur = ?";
 
+	private static final String UPDATE_CREDIT_USER = "UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur = ?";
+
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException {
 		PreparedStatement pstmt = null;
@@ -62,22 +64,20 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 					if (rs.next()) {
 						utilisateur.setNoUtilisateur(rs.getInt(1));
+
 					}
 				}
 				cnx.commit();
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 				cnx.rollback();
 				throw e;
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.INSERT_OBJET_ECHEC);
 			throw businessException;
-			
 		} finally {
 			if (rs != null) {
 				try {
@@ -94,9 +94,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				}
 			}
 		}
-	}
 
-	@Override
+	}
 	public void update(Utilisateur utilisateur, int id) throws BusinessException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -128,19 +127,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 				}
 				cnx.commit();
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 				cnx.rollback();
 				throw e;
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.INSERT_OBJET_ECHEC);
 			throw businessException;
-			
 		} finally {
 			if (rs != null) {
 				try {
@@ -157,6 +153,54 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				}
 			}
 		}
+
+	}
+
+	public void updateCreditUser(int idUser, int credit) throws BusinessException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			try {
+				cnx.setAutoCommit(false);
+				if (idUser > 0) {
+					pstmt = cnx.prepareStatement(UtilisateurDAOJdbcImpl.UPDATE_CREDIT_USER);
+
+					pstmt.setInt(1, credit);
+					pstmt.setInt(2, idUser);
+
+					pstmt.executeUpdate();
+
+				}
+				cnx.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				cnx.rollback();
+				throw e;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.addErreur(CodeResultatDAL.INSERT_OBJET_ECHEC);
+
+			throw businessException;
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 	}
 
 	@Override
@@ -167,13 +211,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt = cnx.prepareStatement(UtilisateurDAOJdbcImpl.DELETE_UTILISATEUR);
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.SUPPRESSION_UTILISATEUR_ERREUR);
 			throw businessException;
-			
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -185,6 +227,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 	}
 
+
 	@Override
 	public List<Utilisateur> selectAll() throws BusinessException {
 		PreparedStatement pstmt = null;
@@ -194,20 +237,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			pstmt = cnx.prepareStatement(UtilisateurDAOJdbcImpl.SELECT_ALL);
 			rs = pstmt.executeQuery();
-			
 			while (rs.next()) {
 				listeUtilisateurs.add(new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
 						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
 						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
 						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getByte("administrateur")));
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.LECTURE_UTILISATEURS);
 			throw businessException;
-			
 		} finally {
 			if (rs != null) {
 				try {
@@ -223,6 +263,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 					e.printStackTrace();
 				}
 			}
+
 		}
 		return listeUtilisateurs;
 	}
@@ -237,7 +278,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt = cnx.prepareStatement(UtilisateurDAOJdbcImpl.SELECT_BY_ID);
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
-			
 			while (rs.next()) {
 				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
@@ -258,16 +298,15 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 									rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
 									rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
 									rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie")
+
 							));
 				}
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.LECTURE_UTILISATEUR);
 			throw businessException;
-			
 		} finally {
 			if (rs != null) {
 				try {
@@ -292,10 +331,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		final String MAIL_REGEX = "([_A-Za-z0-9-]+)(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})";
 		int utilisateurId = 0;
 		Utilisateur utilisateur = new Utilisateur();
-		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			if (pseudo.matches(MAIL_REGEX)) {
@@ -311,17 +348,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 			}
-			
 			if (utilisateur.getMotDePasse().equals(password)) {
 				utilisateurId = utilisateur.getNoUtilisateur();
+			}else{
+				BusinessException businessException = new BusinessException();
+				businessException.addErreur((Integer) CodeResultatDAL.ECHEC_AUTH_MDP);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addErreur(CodeResultatDAL.LECTURE_UTILISATEUR);
 			throw businessException;
-			
 		} finally {
 			if (rs != null) {
 				try {
@@ -340,4 +377,5 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return utilisateurId;
 	}
+
 }

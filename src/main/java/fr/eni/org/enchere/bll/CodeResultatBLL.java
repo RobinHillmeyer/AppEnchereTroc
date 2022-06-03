@@ -54,4 +54,5 @@ public abstract class CodeResultatBLL {
 	
 	//Erreur de la validation du tel
 	public static final int REGLE_NUMBER_PHONE = 20111;
+    public static final int UPDATE_CREDIT_USER = 20112 ;
 }

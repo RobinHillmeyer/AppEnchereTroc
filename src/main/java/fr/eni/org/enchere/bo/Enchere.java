@@ -41,7 +41,7 @@ public class Enchere {
 	}
 
 	public Article getArticle() {
-		return this.article;
+		return article;
 	}
 
 	public void setArticle(Article article) {
@@ -49,7 +49,7 @@ public class Enchere {
 	}
 
 	public Utilisateur getUtilisateur() {
-		return this.utilisateur;
+		return utilisateur;
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {

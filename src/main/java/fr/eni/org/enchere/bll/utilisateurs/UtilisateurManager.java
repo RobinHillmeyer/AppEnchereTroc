@@ -20,26 +20,23 @@ public class UtilisateurManager {
 	public List<Utilisateur> selectAllUtilisateurs() throws BusinessException {
 		BusinessException businessException = new BusinessException();
 		List<Utilisateur> ListeUsers = new ArrayList<>();
-		
 		if (!businessException.hasErreur()) {
 			ListeUsers = this.utilisateurDAO.selectAll();
 		} else {
 			throw businessException;
 		}
-		
 		return ListeUsers;
+
 	}
 
 	public int selectUtilisateurAuth(String pseudo, String Password) throws BusinessException {
 		BusinessException businessException = new BusinessException();
 		int idUser = 0;
-		
 		if (!businessException.hasErreur()) {
 			idUser = this.utilisateurDAO.checkLogin(pseudo, Password);
 		} else {
 			throw businessException;
 		}
-		
 		return idUser;
 	}
 
@@ -52,8 +49,8 @@ public class UtilisateurManager {
 		} else {
 			throw businessException;
 		}
-		
 		return user;
+
 	}
 
 	public void addUser(Utilisateur utilisateur, String comfirPass) throws BusinessException {
@@ -71,6 +68,7 @@ public class UtilisateurManager {
 		} else {
 			throw businessException;
 		}
+
 	}
 
 	public void updateUser(Utilisateur utilisateur, int id, String comfirPass,Utilisateur userBeforUpdate) throws BusinessException {
@@ -81,13 +79,13 @@ public class UtilisateurManager {
 		this.isValidCp(utilisateur.getCodePostal(), businessException);
 		this.isValidNum(utilisateur.getTelephone(), businessException);
 		this.isValidPseudo(utilisateur.getPseudo(), businessException);
-		
 		if(utilisateur.getMotDePasse()!=userBeforUpdate.getMotDePasse()) {
 			this.isSamePasswords(utilisateur, comfirPass, businessException);
 		}
-	
+
 		if (!businessException.hasErreur()) {
-			this.utilisateurDAO.update(utilisateur, id);			
+			this.utilisateurDAO.update(utilisateur, id);
+			System.out.println("on passe dans l'updt managaer l 80");
 		} else {
 			throw businessException;
 		}
@@ -100,7 +98,8 @@ public class UtilisateurManager {
 	private void isSamePasswords(Utilisateur user, String comfirPass, BusinessException businessException) {
 		if (user.getMotDePasse() == null || user.getMotDePasse().trim().length() < 4
 				|| !user.getMotDePasse().equals(comfirPass)) {
-			
+			System.out.println("contrainte mot de passe err");
+
 			businessException.addErreur(0);
 			businessException.addErreur(CodeResultatBLL.REGLE_CHECK_PASSWORD);
 		}
@@ -108,16 +107,16 @@ public class UtilisateurManager {
 
 	public void isUniquePseudo(String pseudo, BusinessException businessException) {
 		List<Utilisateur> users = new ArrayList<>();
-		
 		try {
 			users = this.selectAllUtilisateurs();
 		} catch (BusinessException e) {
+
 			e.printStackTrace();
 		}
-		
 		if (users != null) {
 			for (Utilisateur user : users) {
 				if (user.getPseudo().equals(pseudo.trim())) {
+					System.out.println("pseudo non unique  l 79 userManager");
 
 					businessException.addErreur(CodeResultatBLL.REGLE_PSEUDO_UNIQUE);
 				}
@@ -127,13 +126,11 @@ public class UtilisateurManager {
 
 	public void isUniqueMail(String mail, BusinessException businessException) {
 		List<Utilisateur> users = new ArrayList<>();
-		
 		try {
 			users = this.selectAllUtilisateurs();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
-		
 		if (users != null) {
 			for (Utilisateur user : users) {
 				if (user.getEmail().equals(mail.trim())) {
@@ -142,32 +139,44 @@ public class UtilisateurManager {
 				}
 			}
 		}
+
 	}
-	
+
+	public void updateCreditUser(int idUser, int credit ) throws BusinessException {
+		try {
+			this.utilisateurDAO.updateCreditUser(idUser,credit);
+		}catch (BusinessException businessException){
+			businessException.addErreur(CodeResultatBLL.UPDATE_CREDIT_USER);
+			System.out.println("idUser ou credit vide");
+		}
+
+	}
+
 	public void isUniquePseudoUpdate(String pseudo,Utilisateur userBeforeUp, BusinessException businessException) {
 		List<Utilisateur> users = new ArrayList<>();
-		
 		try {
 			users = this.selectAllUtilisateurs();
 		} catch (BusinessException e) {
+
 			e.printStackTrace();
 		}
-		
 		if (users != null) {
 			for (Utilisateur user : users) {
 				if (user.getPseudo().equals(pseudo.trim()) && !pseudo.equals(userBeforeUp.getPseudo())  ) {
-						businessException.addErreur(CodeResultatBLL.REGLE_PSEUDO_UNIQUE);
+					System.out.println("le pseudo n'a pas chang� ");
+					businessException.addErreur(CodeResultatBLL.REGLE_PSEUDO_UNIQUE);
+					System.out.println("pseudo non unique � l'update");
+
 				}
 			}
 		}
 	}
 
 	public void isUniqueMailUpdate(String mail,Utilisateur userBeforUpdate, BusinessException businessException) {
-		// on cr�er une liste qui va recevoir la liste de tout les utilisateurs
+		// on créer une liste qui va recevoir la liste de tout les utilisateurs
 		List<Utilisateur> users = new ArrayList<>();
-		
 		try {
-			//on essai de r�cup�rer tout les utilisateurs en les setant dans la liste
+			//on essai de récupérer tout les utilisateurs en les setant dans la liste
 			users = this.selectAllUtilisateurs();
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -177,10 +186,13 @@ public class UtilisateurManager {
 			for (Utilisateur user : users) {
 				//on test que le mail de chaque users est bien diff�rent du nouveau mail
 				if (user.getEmail().equals(mail.trim())&& !mail.equals(userBeforUpdate.getEmail())) {	
-						businessException.addErreur(CodeResultatBLL.REGLE_MAIL_UNIQUE);
+					businessException.addErreur(CodeResultatBLL.REGLE_MAIL_UNIQUE);
+					System.out.println("err email unique � l'update");
+
 				}
 			}
 		}
+
 	}
 
 	public void isValidPseudo(String pseudo, BusinessException businessException) {
@@ -189,6 +201,7 @@ public class UtilisateurManager {
 		if (!pseudo.matches(REGEX)) {
 			businessException.addErreur(CodeResultatBLL.REGLE_PSEUDO_ALPHANUM);
 			System.out.println("ALPHA num err");
+
 		}
 	}
 
@@ -206,7 +219,9 @@ public class UtilisateurManager {
 
 		if (!number.matches(REGEX) && number.length() != 10) {
 			businessException.addErreur(CodeResultatBLL.REGLE_NUMBER_PHONE);
-			System.out.println("num�ro de t�l�phone incorrect");
+			System.out.println("numéro de téléphone incorrect");
 		}
+
 	}
+
 }

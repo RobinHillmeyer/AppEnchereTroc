@@ -12,4 +12,7 @@ public interface UtilisateurDAO {
     public List<Utilisateur> selectAll() throws BusinessException;
     public Utilisateur selectById(int id) throws BusinessException;
 	public int checkLogin(String pseudo, String password) throws BusinessException;
-}
+
+    public void updateCreditUser(int idUser, int credit) throws BusinessException ;
+
+    }

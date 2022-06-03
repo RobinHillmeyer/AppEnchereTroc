@@ -24,11 +24,10 @@ public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
-
 		if (request.getServletPath().equals("/signIn")) {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/connexion/signIn.jsp");
 			rd.forward(request, response);
@@ -37,7 +36,6 @@ public class ServletLogin extends HttpServlet {
 			rd.forward(request, response);
 		} else if (request.getServletPath().equals("/signOut")) {
 			Cookie[] cookies = request.getCookies();
-			
 			for (Cookie cookie : cookies) {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
@@ -46,11 +44,14 @@ public class ServletLogin extends HttpServlet {
 				session.removeAttribute("userIdSessionAttr");
 			}
 			response.sendRedirect("home");
+
 		}
+
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		List<Integer> listeCodesErreur = new ArrayList<>();
 
@@ -60,7 +61,7 @@ public class ServletLogin extends HttpServlet {
 
 			if (listeCodesErreur.size() > 0) {
 
-//				System.out.println("listeCodeErr dans /signIn : " + listeCodesErreur.toString());
+				System.out.println("listeCodeErr dans /signIn : " + listeCodesErreur.toString());
 
 				request.setAttribute("listeCodesErreur", listeCodesErreur);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/connexion/signIn.jsp");
@@ -82,10 +83,13 @@ public class ServletLogin extends HttpServlet {
 			} else {
 				response.sendRedirect("home");
 			}
+
 		}
+
 	}
 
-	public void creerUtilisateur(HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) {
+	public void creerUtilisateur(HttpServletRequest request, HttpServletResponse response,
+			List<Integer> listeCodesErreur) {
 
 		Utilisateur user = new Utilisateur();
 		UtilisateurManager umng = new UtilisateurManager();
@@ -117,15 +121,14 @@ public class ServletLogin extends HttpServlet {
 
 		} catch (BusinessException e) {
 			listeCodesErreur.add(CodeResultatServlet.ECHEC_CREATE_NEW_USER);
+
 		}
 	}
 
 	public void checkAuth(HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) {
-		
 		UtilisateurManager umng = new UtilisateurManager();
 		String pseudo = request.getParameter("identifiant");
 		String password = request.getParameter("mdp");
-		
 		try {
 			if (pseudo != " " && password != " ") {
 				int idUser = umng.selectUtilisateurAuth(pseudo, password);
@@ -138,11 +141,14 @@ public class ServletLogin extends HttpServlet {
 					Utilisateur user = umng.selectUtilisateurById(idUser);
 					request.getSession().setAttribute("userCredit", user.getCredit());
 				}
+
 			}
 
 		} catch (BusinessException e) {
 			listeCodesErreur.add(CodeResultatServlet.ECHEC_LOG_USER);
 			e.printStackTrace();
+
 		}
 	}
+
 }

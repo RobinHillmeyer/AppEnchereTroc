@@ -8,14 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import fr.eni.org.enchere.BusinessException;
 import fr.eni.org.enchere.bll.articles.ArticleManager;
 import fr.eni.org.enchere.bll.categories.CategorieManager;
-import fr.eni.org.enchere.bll.retraits.RetraitManager;
+import fr.eni.org.enchere.bll.encheres.EnchereManager;
 import fr.eni.org.enchere.bll.utilisateurs.UtilisateurManager;
 import fr.eni.org.enchere.bo.Article;
 import fr.eni.org.enchere.bo.Categorie;
-import fr.eni.org.enchere.bo.Retrait;
 import fr.eni.org.enchere.bo.Utilisateur;
 
 /**
@@ -30,12 +31,13 @@ public class ServletDetailVente extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+
 		// Recuperation info articles
 		ArticleManager am = new ArticleManager();
 		UtilisateurManager um = new UtilisateurManager();
 		CategorieManager cm = new CategorieManager();
 		Categorie categorie = new Categorie();
-		RetraitManager rm = new RetraitManager();
 		int idArticle =Integer.parseInt(request.getParameter("idArticle"));
 
 		try {
@@ -46,8 +48,6 @@ public class ServletDetailVente extends HttpServlet {
 				request.setAttribute("categorie", categorie);
 				Utilisateur utilisateur = um.selectUtilisateurById(article.getNoUtilisateur());
 				request.setAttribute("utilisateur", utilisateur);
-				Retrait retrait = rm.selectById(idArticle);
-				request.setAttribute("retrait", retrait);
 			}
 
 		} catch (Exception e) {
@@ -63,10 +63,32 @@ public class ServletDetailVente extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// TODO Comment récupérer l'enchere ajoutée dans detailVente.jsp, je me pose la question, cela me turlupine	
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pages/home.jsp");
-		rd.forward(request, response); 
+		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		EnchereManager em = new EnchereManager();
+
+		try {
+			int idArticle = Integer.parseInt(request.getParameter("idArticle"));
+			int montantEnchere = Integer.parseInt(request.getParameter("proposition"));
+			int idUser = (int) session.getAttribute("userIdSessionAttr");
+			int userCredit = (int) session.getAttribute("userCredit");
+
+			// on met à jour le crédit de l'utilisateur.
+			int newUserCredit = userCredit - montantEnchere;
+			int idUserOldWin = em.selectById(idArticle).getIdUtilisateurWin();
+		  	session.setAttribute("userCredit",newUserCredit);
+			UtilisateurManager um = new UtilisateurManager();
+			um.updateCreditUser(idUser,newUserCredit);
+
+
+			em.update(montantEnchere,idUser,idArticle);
+			System.out.println("On à passé l'update dans la servlet" );
+		} catch (Exception e) {
+			request.setAttribute("listeCodesErreur", e);
+			e.printStackTrace();
+		}finally {
+			response.sendRedirect("home");
+		}
 	}
 
 }

@@ -1,12 +1,13 @@
 package fr.eni.org.enchere.bll.encheres;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.eni.org.enchere.BusinessException;
 import fr.eni.org.enchere.bo.Enchere;
+import fr.eni.org.enchere.bo.Utilisateur;
 import fr.eni.org.enchere.dal.DAOFactory;
 import fr.eni.org.enchere.dal.encheres.EnchereDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EnchereManager {
 	
@@ -120,4 +121,5 @@ public class EnchereManager {
 		}
 		return listEnchere;
 	}
+
 }
