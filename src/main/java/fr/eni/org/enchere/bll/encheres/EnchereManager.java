@@ -59,6 +59,16 @@ public class EnchereManager {
 		}
 
 	}
+
+	public void update(int montantEnchere, int idUser, int idArticle) throws BusinessException{
+		BusinessException businessException = new BusinessException();
+		if (!businessException.hasErreur()) {
+			this.enchereDAO.update(montantEnchere,idUser,idArticle);
+		} else {
+			throw businessException;
+		}
+
+	}
 	public List<Enchere> selectByCategories(int idCategorie) throws BusinessException {
 		BusinessException businessException = new BusinessException();
 		List<Enchere> listEnchere = new ArrayList<>();

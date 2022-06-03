@@ -8,8 +8,10 @@ import java.util.List;
 public interface EnchereDAO {
 	
 	public void insert(Enchere enchere) throws BusinessException;
-	public Enchere update() throws BusinessException;
-	public void delete (int idEnchere) throws BusinessException;
+
+   	public void update( int montantEnchere, int idUser, int idArticle) throws BusinessException;
+
+    public void delete (int idEnchere) throws BusinessException;
 
 	public List<Enchere> selectAll()throws BusinessException;
 

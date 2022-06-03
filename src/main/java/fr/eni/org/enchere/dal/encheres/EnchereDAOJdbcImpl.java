@@ -19,7 +19,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	"INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article\n"+
 	"INNER JOIN UTILISATEURS u ON u.no_utilisateur = e.no_utilisateur\n"+
 	"where a.nom_article LIKE = ?";
-	private static final String DELETE_ENCHERE = "DELETE FROM ENCHERES where no_arcticle =?";
+	private static final String DELETE_ENCHERE = "DELETE FROM ENCHERES where no_article = ?";
 
 	private static final String SELECT_ALL =  "SELECT * from ENCHERES e\n" +
 			"INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article\n" +
@@ -44,6 +44,9 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			"\t\t\tINNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article\n" +
 			"\t\t\tINNER JOIN UTILISATEURS u ON u.no_utilisateur = e.no_utilisateur\n" +
 			"\t\t\twhere e.no_utilisateur_win = ?";
+
+	private static final String UPDATE_ENCHER = "UPDATE ENCHERES SET montant_enchere = ?, no_utilisateur_win = ? WHERE no_article =?";
+
 
 	@Override
 	public void insert(Enchere enchere) throws BusinessException {
@@ -96,8 +99,40 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	}
 
 	@Override
-	public Enchere update() throws BusinessException {
-		return null;
+	public void update(int montantEnchere, int idUser ,int idArticle) throws BusinessException {
+		BusinessException businessException = new BusinessException();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try(Connection cnx = ConnectionProvider.getConnection()) {
+			pstmt = cnx.prepareStatement(UPDATE_ENCHER);
+			pstmt.setInt(1, montantEnchere);
+			pstmt.setInt(2, idUser);
+			pstmt.setInt(3, idArticle);
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println("on passe pas dans l'update ");
+			e.printStackTrace();
+			businessException = new BusinessException();
+			businessException.addErreur(CodeResultatDAL.ECHEC_UPDATE_ENCHERE);
+			throw businessException;
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
